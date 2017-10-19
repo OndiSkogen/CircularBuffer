@@ -10,37 +10,34 @@ namespace CircularBuffer
 
         private int head;
         private int tail;
+        private int count;
 
         public Queue(int n)
         {
             buf = new int[++n];
             head = 0;
             tail = 0;
+            count = 0;
         }
 
         public void Enqueue(int put)
         {
-                buf[head] = put;
-                head = (head + 1) % buf.Length;
+            count++;
+            buf[head] = put;
+            head = (head + 1) % buf.Length;
         }
 
         public void Dequeue()
         {
-            if (tail == head)
-            {
-                Console.WriteLine("Buffer is empty.");
-            }
-            else
-            {
                 Console.WriteLine(buf[tail] + " was removed.");
+                count--;
                 buf[tail] = 0;
-                tail = (tail + 1) % buf.Length;
-            }            
+                tail = (tail + 1) % buf.Length;    
         }
 
         public bool Full()
         {
-            if (tail == (head + 1) % (buf.Length))
+            if (count > 0 && head == tail)
             {
                 return true;
             }
@@ -52,7 +49,7 @@ namespace CircularBuffer
 
         public bool Empty()
         {
-            if (head == 0 && tail == 0)
+            if (count == 0)
             {
                 return true;
             }

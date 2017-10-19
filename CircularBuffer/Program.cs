@@ -54,7 +54,7 @@ namespace CircularBuffer
                     case 2:
                         if (queue.Empty())
                         {
-                            Console.WriteLine("No data in the buffer yet.");
+                            Console.WriteLine("The buffer is empty.");
                         }
                         else
                         {
