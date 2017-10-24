@@ -14,7 +14,7 @@ namespace CircularBuffer
 
         public Queue(int n)
         {
-            buf = new int[++n];
+            buf = new int[n];
             head = 0;
             tail = 0;
             count = 0;
@@ -29,10 +29,10 @@ namespace CircularBuffer
 
         public void Dequeue()
         {
-                Console.WriteLine(buf[tail] + " was removed.");
-                count--;
-                buf[tail] = 0;
-                tail = (tail + 1) % buf.Length;    
+            Console.WriteLine(buf[tail] + " was removed.");
+            count--;
+            buf[tail] = 0;
+            tail = (tail + 1) % buf.Length;    
         }
 
         public bool Full()
